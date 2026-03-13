@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Bricolage+Grotesque:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0.13 0.008 260;
+    --foreground: 0.92 0.018 80;
+    --card: 0.17 0.01 260;
+    --card-foreground: 0.92 0.018 80;
+    --popover: 0.17 0.01 260;
+    --popover-foreground: 0.92 0.018 80;
+    --primary: 0.76 0.155 55;
+    --primary-foreground: 0.13 0.008 260;
+    --secondary: 0.22 0.012 260;
+    --secondary-foreground: 0.92 0.018 80;
+    --muted: 0.22 0.012 260;
+    --muted-foreground: 0.55 0.02 260;
+    --accent: 0.68 0.18 42;
+    --accent-foreground: 0.13 0.008 260;
+    --destructive: 0.63 0.22 25;
+    --destructive-foreground: 0.92 0.018 80;
+    --border: 0.25 0.015 260;
+    --input: 0.25 0.015 260;
+    --ring: 0.76 0.155 55;
+    --radius: 0.75rem;
+    --chart-1: 0.76 0.155 55;
+    --chart-2: 0.68 0.18 42;
+    --chart-3: 0.55 0.12 200;
+    --chart-4: 0.45 0.14 170;
+    --chart-5: 0.72 0.1 120;
+    --sidebar: 0.15 0.009 260;
+    --sidebar-foreground: 0.92 0.018 80;
+    --sidebar-primary: 0.76 0.155 55;
+    --sidebar-primary-foreground: 0.13 0.008 260;
+    --sidebar-accent: 0.22 0.012 260;
+    --sidebar-accent-foreground: 0.92 0.018 80;
+    --sidebar-border: 0.25 0.015 260;
+    --sidebar-ring: 0.76 0.155 55;
+
+    /* Pomodoro custom */
+    --glow-amber: oklch(0.76 0.155 55 / 0.15);
+    --timer-digit: oklch(0.96 0.04 75);
+    --work-color: oklch(0.76 0.155 55);
+    --rest-color: oklch(0.68 0.14 190);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Bricolage Grotesque", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Flash overlay keyframes */
+@keyframes softFlash {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.35;
+  }
+  35% {
+    opacity: 0.08;
+  }
+  50% {
+    opacity: 0.28;
+  }
+  65% {
+    opacity: 0.05;
+  }
+  80% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.flash-overlay {
+  animation: softFlash 3s ease-in-out forwards;
+  pointer-events: none;
+}
+
+/* Digital timer font */
+.font-digital {
+  font-family: "JetBrains Mono", monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+/* Smooth hand rotation */
+.analog-hand {
+  transform-origin: 50% 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Subtle glow on timer */
+.timer-glow-work {
+  filter: drop-shadow(0 0 24px oklch(0.76 0.155 55 / 0.4));
+}
+.timer-glow-rest {
+  filter: drop-shadow(0 0 24px oklch(0.68 0.14 190 / 0.4));
+}
+
+/* Background transition */
+.bg-transition {
+  transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--border));
+  border-radius: 3px;
+}
